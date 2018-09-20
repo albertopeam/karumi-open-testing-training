@@ -20,6 +20,8 @@
 		C3C3B5E12153F32A00C932D1 /* AccessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DF2153F32A00C932D1 /* AccessPresenter.swift */; };
 		C3CDE51D2154474300A45E44 /* AccessUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDE51B2154474300A45E44 /* AccessUseCaseTests.swift */; };
 		C3CDE51E2154474300A45E44 /* AccessPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDE51C2154474300A45E44 /* AccessPresenterTests.swift */; };
+		C3D1A48921544DF000C9BC26 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D1A48721544DF000C9BC26 /* BrightFutures.framework */; };
+		C3D1A48A21544DF000C9BC26 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D1A48821544DF000C9BC26 /* Result.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		C3C3B5DF2153F32A00C932D1 /* AccessPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPresenter.swift; sourceTree = "<group>"; };
 		C3CDE51B2154474300A45E44 /* AccessUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessUseCaseTests.swift; sourceTree = "<group>"; };
 		C3CDE51C2154474300A45E44 /* AccessPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessPresenterTests.swift; sourceTree = "<group>"; };
+		C3D1A48721544DF000C9BC26 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
+		C3D1A48821544DF000C9BC26 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3D1A48921544DF000C9BC26 /* BrightFutures.framework in Frameworks */,
+				C3D1A48A21544DF000C9BC26 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +79,7 @@
 				C3C3B5B62153D69500C932D1 /* KataLogInLogOut */,
 				C3C3B5CB2153D69600C932D1 /* KataLogInLogOutTests */,
 				C3C3B5B52153D69500C932D1 /* Products */,
+				C3D1A48621544DF000C9BC26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +118,15 @@
 			path = KataLogInLogOutTests;
 			sourceTree = "<group>";
 		};
+		C3D1A48621544DF000C9BC26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3D1A48721544DF000C9BC26 /* BrightFutures.framework */,
+				C3D1A48821544DF000C9BC26 /* Result.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,6 +137,7 @@
 				C3C3B5B02153D69500C932D1 /* Sources */,
 				C3C3B5B12153D69500C932D1 /* Frameworks */,
 				C3C3B5B22153D69500C932D1 /* Resources */,
+				C3D1A48B21544E0800C9BC26 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -206,6 +223,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C3D1A48B21544E0800C9BC26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BrightFutures.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C3C3B5B02153D69500C932D1 /* Sources */ = {
@@ -382,6 +419,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = KataLogInLogOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -401,6 +442,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = KataLogInLogOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
