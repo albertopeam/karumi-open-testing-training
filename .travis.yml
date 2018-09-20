@@ -1,0 +1,8 @@
+language: objective-c
+osx_image: xcode9.4
+
+before_install:
+  - gem install xcpretty
+
+script:
+  - set -o pipefail && xcodebuild -project KataLogInLogOut.xcodeproj -target 'KataLogInLogOut' -destination 'platform=iOS Simulator,name=iPhone 6s Plus' build test CODE_SIGN_IDENTITY=- | xcpretty -c
