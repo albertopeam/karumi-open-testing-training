@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import Nimble
+@testable import KataLogInLogOut
 
 class AccessPresenterTests: XCTestCase {
     
@@ -35,7 +37,7 @@ class AccessPresenterTests: XCTestCase {
     
     func test_given_valid_login_logic_when_login_then_logged() {
         givenLoginResult(result: LoginResult.success)
-        sut.logIn(username: "", password: "")
+        sut.logIn(username: USERNAME, password: PASSWORD)
         XCTAssertTrue(mockView.hidedLogInForm)
         XCTAssertTrue(mockView.showedLogOutForm)
         XCTAssertNil(mockView.showedLoginForm)

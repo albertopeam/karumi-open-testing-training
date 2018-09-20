@@ -22,6 +22,7 @@
 		C3CDE51E2154474300A45E44 /* AccessPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDE51C2154474300A45E44 /* AccessPresenterTests.swift */; };
 		C3D1A48921544DF000C9BC26 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D1A48721544DF000C9BC26 /* BrightFutures.framework */; };
 		C3D1A48A21544DF000C9BC26 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D1A48821544DF000C9BC26 /* Result.framework */; };
+		C3D1A48D21544F8F00C9BC26 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D1A48C21544F8F00C9BC26 /* Nimble.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,18 @@
 			remoteInfo = KataLogInLogOut;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C3D1A48E2154512E00C9BC26 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C3C3B5B42153D69500C932D1 /* KataLogInLogOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KataLogInLogOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +64,7 @@
 		C3CDE51C2154474300A45E44 /* AccessPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessPresenterTests.swift; sourceTree = "<group>"; };
 		C3D1A48721544DF000C9BC26 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		C3D1A48821544DF000C9BC26 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		C3D1A48C21544F8F00C9BC26 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3D1A48D21544F8F00C9BC26 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +136,7 @@
 		C3D1A48621544DF000C9BC26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3D1A48C21544F8F00C9BC26 /* Nimble.framework */,
 				C3D1A48721544DF000C9BC26 /* BrightFutures.framework */,
 				C3D1A48821544DF000C9BC26 /* Result.framework */,
 			);
@@ -155,6 +171,8 @@
 				C3C3B5C42153D69500C932D1 /* Sources */,
 				C3C3B5C52153D69500C932D1 /* Frameworks */,
 				C3C3B5C62153D69500C932D1 /* Resources */,
+				C3D1A48E2154512E00C9BC26 /* CopyFiles */,
+				C37798D12154562E008FA97A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -225,6 +243,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C37798D12154562E008FA97A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		C3D1A48B21544E0800C9BC26 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -466,6 +498,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = KataLogInLogOutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -488,6 +524,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = KataLogInLogOutTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
