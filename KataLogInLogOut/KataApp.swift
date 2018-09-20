@@ -8,6 +8,13 @@
 
 import Foundation
 
+
+enum LoginResult:Equatable {
+    case success
+    case invalidChars
+    case invalid
+}
+
 class KataApp {
     
     private let clock:Clock
@@ -16,14 +23,14 @@ class KataApp {
         self.clock = clock
     }
     
-    func logIn(username:String, password:String) -> Bool {
+    func logIn(username:String, password:String) -> LoginResult {
         if checkInValidUsername(input: username){
-            return false
+            return LoginResult.invalidChars
         }
         if username.isEqual("admin") && password.isEqual("admin") {
-            return true
+            return LoginResult.success
         }
-        return false
+        return LoginResult.invalid
     }
     
     func logOut() -> Bool {

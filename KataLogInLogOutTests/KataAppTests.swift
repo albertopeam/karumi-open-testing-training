@@ -20,22 +20,23 @@ class KataAppTests: XCTestCase {
     
     func test_given_invalid_username_password_when_login_then_not_logged() {
         givenNow()
-        XCTAssertEqual(false, sut.logIn(username: "", password: "admin"))
+        let result = sut.logIn(username: "", password: "admin")
+        XCTAssertEqual(result, .invalid)
     }
     
     func test_given_valid_username_invalid_pass_when_login_then_not_logged() {
         givenNow()
-        XCTAssertEqual(false, sut.logIn(username: "admin", password: ""))
+        XCTAssertEqual(.invalid, sut.logIn(username: "admin", password: ""))
     }
     
     func test_given_invalid_username_valid_pass_when_login_then_not_logged() {
         givenNow()
-        XCTAssertEqual(false, sut.logIn(username: "", password: "admin"))
+        XCTAssertEqual(.invalid, sut.logIn(username: "", password: "admin"))
     }
     
     func test_given_valid_args_when_login_then_logged() {
         givenNow()
-        XCTAssertEqual(true, sut.logIn(username: "admin", password: "admin"))
+        XCTAssertEqual(.success, sut.logIn(username: "admin", password: "admin"))
     }
     
     func test_given_valid_time_when_logout_then_logout(){
@@ -54,7 +55,7 @@ class KataAppTests: XCTestCase {
         givenNow()
         let failureChars = [",", ".", ";"]
         for item in failureChars {
-            XCTAssertEqual(false, sut.logIn(username: item, password: "admin"))
+            XCTAssertEqual(.invalidChars, sut.logIn(username: item, password: "admin"))
         }
     }
     

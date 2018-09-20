@@ -19,13 +19,17 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: UIButton) {
         let username = usernameTextField.text!
         let password = passwordTextField.text!
-        if kataApp.logIn(username: username, password: password) {
+        let loggedIn = kataApp.logIn(username: username, password: password)
+        switch loggedIn {
+        case .success:
             usernameTextField.isHidden = true
             passwordTextField.isHidden = true
             logoutButton.isHidden = false
             loginButton.isHidden = true
-        }else{
-            print("not logged")
+        case .invalidChars:
+            print("invalid chars in login")
+        case .invalid:
+            print("invalid login")
         }
     }
     
@@ -38,8 +42,9 @@ class ViewController: UIViewController {
             logoutButton.isHidden = true
             loginButton.isHidden = false
         }else {
-            
+            print("invalid logout")
         }
     }
+    
 }
 
