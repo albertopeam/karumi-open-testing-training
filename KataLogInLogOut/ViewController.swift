@@ -15,36 +15,56 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     private let kataApp = KataApp(clock: Clock())
+    private let presenter = AccessPresenter()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter.view = self
+    }
 
     @IBAction func login(_ sender: UIButton) {
-        let username = usernameTextField.text!
-        let password = passwordTextField.text!
-        let loggedIn = kataApp.logIn(username: username, password: password)
-        switch loggedIn {
-        case .success:
-            usernameTextField.isHidden = true
-            passwordTextField.isHidden = true
-            logoutButton.isHidden = false
-            loginButton.isHidden = true
-        case .invalidChars:
-            print("invalid chars in login")
-        case .invalid:
-            print("invalid login")
-        }
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        presenter.logIn(username: username, password: password)
     }
     
     @IBAction func logout(_ sender: UIButton) {
-        if kataApp.logOut() {
-            usernameTextField.text = ""
-            passwordTextField.text = ""
-            usernameTextField.isHidden = false
-            passwordTextField.isHidden = false
-            logoutButton.isHidden = true
-            loginButton.isHidden = false
-        }else {
-            print("invalid logout")
-        }
+        presenter.logOut()
     }
+    
+}
+
+extension ViewController: AccessView {
+    
+    func showLogInForm() {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+        usernameTextField.isHidden = false
+        passwordTextField.isHidden = false
+        loginButton.isHidden = false
+    }
+    
+    func hideLogInForm() {
+        usernameTextField.isHidden = true
+        passwordTextField.isHidden = true
+        loginButton.isHidden = true
+    }
+    
+    func showLogOutForm() {
+        usernameTextField.isHidden = true
+        passwordTextField.isHidden = true
+        logoutButton.isHidden = false
+        loginButton.isHidden = true
+    }
+    
+    func hideLogOutForm() {
+        logoutButton.isHidden = true
+    }
+    
+    func showError(error: String) {
+        print("error: \(error)")
+    }
+    
     
 }
 

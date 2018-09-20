@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum LoginResult:Equatable {
     case success
     case invalidChars

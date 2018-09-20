@@ -17,6 +17,9 @@
 		C3C3B5D92153E09000C932D1 /* KataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5D72153E09000C932D1 /* KataApp.swift */; };
 		C3C3B5DD2153E60500C932D1 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DC2153E60500C932D1 /* Clock.swift */; };
 		C3C3B5DE2153E60500C932D1 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DC2153E60500C932D1 /* Clock.swift */; };
+		C3C3B5E02153F32A00C932D1 /* AccessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DF2153F32A00C932D1 /* AccessPresenter.swift */; };
+		C3C3B5E12153F32A00C932D1 /* AccessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DF2153F32A00C932D1 /* AccessPresenter.swift */; };
+		C3C3B5E62153F9D500C932D1 /* AccessPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5E52153F9D500C932D1 /* AccessPresenterTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,8 @@
 		C3C3B5CE2153D69600C932D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3C3B5D72153E09000C932D1 /* KataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KataApp.swift; sourceTree = "<group>"; };
 		C3C3B5DC2153E60500C932D1 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		C3C3B5DF2153F32A00C932D1 /* AccessPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPresenter.swift; sourceTree = "<group>"; };
+		C3C3B5E52153F9D500C932D1 /* AccessPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPresenterTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,7 @@
 			children = (
 				C3C3B5B72153D69500C932D1 /* AppDelegate.swift */,
 				C3C3B5B92153D69500C932D1 /* ViewController.swift */,
+				C3C3B5DF2153F32A00C932D1 /* AccessPresenter.swift */,
 				C3C3B5D72153E09000C932D1 /* KataApp.swift */,
 				C3C3B5DC2153E60500C932D1 /* Clock.swift */,
 				C3C3B5BB2153D69500C932D1 /* Main.storyboard */,
@@ -99,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				C3C3B5CC2153D69600C932D1 /* KataAppTests.swift */,
+				C3C3B5E52153F9D500C932D1 /* AccessPresenterTest.swift */,
 				C3C3B5CE2153D69600C932D1 /* Info.plist */,
 			);
 			path = KataLogInLogOutTests;
@@ -205,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C3B5E02153F32A00C932D1 /* AccessPresenter.swift in Sources */,
 				C3C3B5BA2153D69500C932D1 /* ViewController.swift in Sources */,
 				C3C3B5D82153E09000C932D1 /* KataApp.swift in Sources */,
 				C3C3B5DD2153E60500C932D1 /* Clock.swift in Sources */,
@@ -216,8 +224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C3B5E62153F9D500C932D1 /* AccessPresenterTest.swift in Sources */,
 				C3C3B5DE2153E60500C932D1 /* Clock.swift in Sources */,
 				C3C3B5D92153E09000C932D1 /* KataApp.swift in Sources */,
+				C3C3B5E12153F32A00C932D1 /* AccessPresenter.swift in Sources */,
 				C3C3B5CD2153D69600C932D1 /* KataAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
