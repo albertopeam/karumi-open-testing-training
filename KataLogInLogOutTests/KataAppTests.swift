@@ -50,6 +50,14 @@ class KataAppTests: XCTestCase {
         XCTAssertEqual(false, sut.logOut())
     }
     
+    func test_given_invalid_char_username_when_login_then_not_logged() {
+        givenNow()
+        let failureChars = [",", ".", ";"]
+        for item in failureChars {
+            XCTAssertEqual(false, sut.logIn(username: item, password: "admin"))
+        }
+    }
+    
     // Mark : private
     func givenNowIs(clock:Clock) {
         sut = KataApp(clock: clock)

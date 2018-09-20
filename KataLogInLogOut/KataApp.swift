@@ -17,6 +17,9 @@ class KataApp {
     }
     
     func logIn(username:String, password:String) -> Bool {
+        if checkInValidUsername(input: username){
+            return false
+        }
         if username.isEqual("admin") && password.isEqual("admin") {
             return true
         }
@@ -26,5 +29,9 @@ class KataApp {
     func logOut() -> Bool {
         let date = clock.now
         return Int(date.timeIntervalSince1970) % 2 == 0
+    }
+    
+    private func checkInValidUsername(input:String) -> Bool {
+        return input.contains(",") || input.contains(".") || input.contains(";")
     }
 }
