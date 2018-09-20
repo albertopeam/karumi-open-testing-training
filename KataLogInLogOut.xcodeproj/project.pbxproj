@@ -15,6 +15,8 @@
 		C3C3B5CD2153D69600C932D1 /* KataAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5CC2153D69600C932D1 /* KataAppTests.swift */; };
 		C3C3B5D82153E09000C932D1 /* KataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5D72153E09000C932D1 /* KataApp.swift */; };
 		C3C3B5D92153E09000C932D1 /* KataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5D72153E09000C932D1 /* KataApp.swift */; };
+		C3C3B5DD2153E60500C932D1 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DC2153E60500C932D1 /* Clock.swift */; };
+		C3C3B5DE2153E60500C932D1 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3B5DC2153E60500C932D1 /* Clock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,7 @@
 		C3C3B5CC2153D69600C932D1 /* KataAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KataAppTests.swift; sourceTree = "<group>"; };
 		C3C3B5CE2153D69600C932D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3C3B5D72153E09000C932D1 /* KataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KataApp.swift; sourceTree = "<group>"; };
+		C3C3B5DC2153E60500C932D1 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 				C3C3B5B72153D69500C932D1 /* AppDelegate.swift */,
 				C3C3B5B92153D69500C932D1 /* ViewController.swift */,
 				C3C3B5D72153E09000C932D1 /* KataApp.swift */,
+				C3C3B5DC2153E60500C932D1 /* Clock.swift */,
 				C3C3B5BB2153D69500C932D1 /* Main.storyboard */,
 				C3C3B5BE2153D69500C932D1 /* Assets.xcassets */,
 				C3C3B5C02153D69500C932D1 /* LaunchScreen.storyboard */,
@@ -203,6 +207,7 @@
 			files = (
 				C3C3B5BA2153D69500C932D1 /* ViewController.swift in Sources */,
 				C3C3B5D82153E09000C932D1 /* KataApp.swift in Sources */,
+				C3C3B5DD2153E60500C932D1 /* Clock.swift in Sources */,
 				C3C3B5B82153D69500C932D1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C3B5DE2153E60500C932D1 /* Clock.swift in Sources */,
 				C3C3B5D92153E09000C932D1 /* KataApp.swift in Sources */,
 				C3C3B5CD2153D69600C932D1 /* KataAppTests.swift in Sources */,
 			);

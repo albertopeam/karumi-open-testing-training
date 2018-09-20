@@ -37,14 +37,23 @@
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uY8-M0-D9k"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzp-Gw-N8U">
+                                <rect key="frame" x="160" y="328" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7fV-N3-ohB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Pzp-Gw-N8U" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8fh-B6-NfC"/>
                             <constraint firstItem="b5R-pk-FK9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="InT-3V-fYX"/>
                             <constraint firstItem="D3q-BV-BwI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="J45-1D-pYe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="b5R-pk-FK9" secondAttribute="bottom" constant="-51" id="Jaa-CB-OjC"/>
                             <constraint firstItem="OHi-N3-oT0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lti-2r-GFb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b5R-pk-FK9" secondAttribute="trailing" constant="16" id="Lug-MQ-tqX"/>
+                            <constraint firstItem="Pzp-Gw-N8U" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="byT-d3-Z32"/>
                             <constraint firstItem="D3q-BV-BwI" firstAttribute="top" secondItem="b5R-pk-FK9" secondAttribute="bottom" constant="8" id="hnG-Yp-obI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="D3q-BV-BwI" secondAttribute="trailing" constant="16" id="uao-V6-tY7"/>
                             <constraint firstItem="OHi-N3-oT0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ygZ-et-a4Y"/>
@@ -52,6 +61,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="OHi-N3-oT0" id="H9d-US-k9c"/>
+                        <outlet property="logoutButton" destination="Pzp-Gw-N8U" id="gAO-1G-qhU"/>
                         <outlet property="passwordTextField" destination="D3q-BV-BwI" id="ImF-N5-P2F"/>
                         <outlet property="usernameTextField" destination="b5R-pk-FK9" id="v9Z-xL-75d"/>
                     </connections>
