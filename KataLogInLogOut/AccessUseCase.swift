@@ -14,7 +14,7 @@ enum LoginResult:Equatable {
     case invalid
 }
 
-class KataApp {
+class AccessUseCase {
     
     private let clock:Clock
     

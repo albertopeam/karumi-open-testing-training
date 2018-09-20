@@ -9,9 +9,9 @@
 import XCTest
 @testable import KataLogInLogOut
 
-class KataAppTests: XCTestCase {
+class AccessUseCaseTests: XCTestCase {
     
-    private var sut:KataApp!
+    private var sut:AccessUseCase!
     
     override func tearDown() {
         super.tearDown()
@@ -61,11 +61,11 @@ class KataAppTests: XCTestCase {
     
     // Mark : private
     func givenNowIs(clock:Clock) {
-        sut = KataApp(clock: clock)
+        sut = AccessUseCase(clock: clock)
     }
     
     func givenNow() {
-        sut = KataApp(clock: Clock())
+        sut = AccessUseCase(clock: Clock())
     }
 }
 

@@ -8,17 +8,17 @@
 
 import XCTest
 
-class AccessPresenterTest: XCTestCase {
+class AccessPresenterTests: XCTestCase {
     
     private let USERNAME = ""
     private let PASSWORD = ""
     private var sut:AccessPresenter!
     private var mockView:MockAccessView!
-    private var mockKata:MockKataApp!
+    private var mockKata:MockAccessUseCase!
     
     override func setUp() {
         super.setUp()
-        mockKata = MockKataApp()
+        mockKata = MockAccessUseCase()
         mockView = MockAccessView()
         sut = AccessPresenter(kata: mockKata)
         sut.view = mockView
@@ -117,7 +117,7 @@ class AccessPresenterTest: XCTestCase {
     //Nimble mañana + testing integración
 }
 
-private class MockKataApp: KataApp {
+private class MockAccessUseCase: AccessUseCase {
     
     var loginResult:LoginResult!
     var logoutResult:Bool!

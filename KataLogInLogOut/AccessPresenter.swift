@@ -18,10 +18,10 @@ protocol AccessView {
 
 class AccessPresenter {
     
-    private let kataApp:KataApp
+    private let kataApp:AccessUseCase
     var view:AccessView?
     
-    init(kata:KataApp = KataApp(clock: Clock())) {
+    init(kata:AccessUseCase = AccessUseCase(clock: Clock())) {
         self.kataApp = kata
     }
     

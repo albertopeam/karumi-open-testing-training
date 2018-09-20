@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AccessViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    private let kataApp = KataApp(clock: Clock())
+    private let kataApp = AccessUseCase(clock: Clock())
     private let presenter = AccessPresenter()
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: AccessView {
+extension AccessViewController: AccessView {
     
     func showLogInForm() {
         usernameTextField.text = ""
