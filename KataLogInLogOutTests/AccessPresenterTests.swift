@@ -8,6 +8,8 @@
 
 import XCTest
 import Nimble
+import BrightFutures
+import Result
 @testable import KataLogInLogOut
 
 class AccessPresenterTests: XCTestCase {
@@ -22,7 +24,7 @@ class AccessPresenterTests: XCTestCase {
         super.setUp()
         mockKata = MockAccessUseCase()
         mockView = MockAccessView()
-        sut = AccessPresenter(kata: mockKata)
+        sut = AccessPresenter(accessUseCase: mockKata)
         sut.view = mockView
     }
     
@@ -36,7 +38,7 @@ class AccessPresenterTests: XCTestCase {
     // Mark: Login
     
     func test_given_valid_login_logic_when_login_then_logged() {
-        givenLoginResult(result: LoginResult.success)
+        givenLogInResult(result: LoginResult.success)
         sut.logIn(username: USERNAME, password: PASSWORD)
         XCTAssertTrue(mockView.hidedLogInForm)
         XCTAssertTrue(mockView.showedLogOutForm)
@@ -46,17 +48,42 @@ class AccessPresenterTests: XCTestCase {
     }
     
     func test_given_invalid_login_when_login_then_not_logged() {
-        givenLoginResult(result: LoginResult.invalid)
+        givenLogInResult(result: LoginResult.invalid)
         sut.logIn(username: USERNAME, password: PASSWORD)
         assertNotTouchedViewForm() //maybe over specificated
         XCTAssertEqual(mockView.showedError, "invalid login")
     }
     
     func test_given_invalid_chars_login_when_login_then_not_logged() {
-        givenLoginResult(result: LoginResult.invalidChars)
+        givenLogInResult(result: LoginResult.invalidChars)
         sut.logIn(username: USERNAME, password: PASSWORD)
         assertNotTouchedViewForm() //maybe over specificated
         XCTAssertEqual(mockView.showedError, "invalid chars in login")
+    }
+    
+    //async
+    func test_given_valid_login_logic_when_login_async_then_logged() {
+        givenLoginResult(result: Result(value: USERNAME))
+        sut.login(username: USERNAME, password: PASSWORD)
+        expect(self.mockView.hidedLogInForm).toEventually(beTrue())
+        expect(self.mockView.showedLogOutForm).toEventually(beTrue())
+        expect(self.mockView.showedLoginForm).to(beNil())
+        expect(self.mockView.hidedLogOutForm).to(beNil())
+        expect(self.mockView.showedError).to(beNil())
+    }
+    
+    func test_given_invalid_login_when_login_async_then_not_logged() {
+        givenLoginResult(result: Result(error: LoginError.invalid))
+        sut.login(username: USERNAME, password: PASSWORD)
+        assertNotTouchedViewForm() //maybe over specificated
+        expect(self.mockView.showedError).to(equal("invalid login"))
+    }
+    
+    func test_given_invalid_chars_login_when_login_async_then_not_logged() {
+        givenLoginResult(result: Result(error: LoginError.invalidChars))
+        sut.login(username: USERNAME, password: PASSWORD)
+        assertNotTouchedViewForm() //maybe over specificated
+        expect(self.mockView.showedError).to(equal("invalid chars in login"))
     }
     
     // Mark: Logout
@@ -80,8 +107,12 @@ class AccessPresenterTests: XCTestCase {
     
     // Mark: private
     
-    func givenLoginResult(result:LoginResult)  {
+    func givenLogInResult(result:LoginResult)  {
         mockKata.loginResult = result
+    }
+
+    func givenLoginResult(result: Result<String, LoginError>) {
+        mockKata.result = result
     }
     
     func givenLogoutResult(result:Bool) {
@@ -89,38 +120,16 @@ class AccessPresenterTests: XCTestCase {
     }
     
     func assertNotTouchedViewForm() {
-        XCTAssertNil(mockView.hidedLogInForm)
-        XCTAssertNil(mockView.showedLogOutForm)
-        XCTAssertNil(mockView.showedLoginForm)
-        XCTAssertNil(mockView.hidedLogOutForm)
+        expect(self.mockView.hidedLogInForm).toEventually(beNil())
+        expect(self.mockView.showedLogOutForm).toEventually(beNil())
+        expect(self.mockView.showedLoginForm).toEventually(beNil())
+        expect(self.mockView.hidedLogOutForm).toEventually(beNil())
     }
-    
-    
-    //async: Future? tipo de double:
-    //Fake: respeta el comportamiento original, pero cambia el detalle de impl. pej: una db que se fakea con una 'db' en mem
-        // en prod -> codigo async
-        // en tests -> codigo sync del hilo del test
-        // usan execution handlers como en su lib: Rosie
-            //el prod va async
-            //en test va sync
-        //puedo usar queues
-    //swift:
-        //lib: Future, Bright
-        //success, failure..
-        //tool de testing: nimble
-            //expect(future.result).toEventually(eq: xXXX)
-    //solución:
-        //https://github.com/Karumi/KataLogInLogOutSwift
-    //Bright lib
-    //Usan either
-    //estrategias:
-        //1.
-        //2.
-    //Nimble mañana + testing integración
 }
 
 private class MockAccessUseCase: AccessUseCase {
     
+    var result:Result<String, LoginError>!
     var loginResult:LoginResult!
     var logoutResult:Bool!
     
@@ -130,6 +139,10 @@ private class MockAccessUseCase: AccessUseCase {
     
     override func logIn(username: String, password: String) -> LoginResult {
         return loginResult
+    }
+    
+    override func login(username: String, password: String) -> Future<String, LoginError> {
+        return Future(result: result)
     }
     
     override func logOut() -> Bool {

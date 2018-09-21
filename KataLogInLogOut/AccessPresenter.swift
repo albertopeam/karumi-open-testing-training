@@ -18,15 +18,15 @@ protocol AccessView {
 
 class AccessPresenter {
     
-    private let kataApp:AccessUseCase
+    private let accessUseCase:AccessUseCase
     var view:AccessView?
     
-    init(kata:AccessUseCase = AccessUseCase(clock: Clock())) {
-        self.kataApp = kata
+    init(accessUseCase:AccessUseCase = AccessUseCase(clock: Clock())) {
+        self.accessUseCase = accessUseCase
     }
     
     func logIn(username:String, password:String) {
-        let loggedIn = kataApp.logIn(username: username, password: password)
+        let loggedIn = accessUseCase.logIn(username: username, password: password)
         switch loggedIn {
         case .success:
             view?.hideLogInForm()
@@ -38,8 +38,23 @@ class AccessPresenter {
         }
     }
     
+    func login(username:String, password:String) {
+        accessUseCase.login(username: username, password: password)
+            .onSuccess { _ in
+                self.view?.hideLogInForm()
+                self.view?.showLogOutForm()
+            }.onFailure { error in
+                switch error {
+                case .invalidChars:
+                    self.view?.showError(error: "invalid chars in login")
+                case .invalid:
+                    self.view?.showError(error: "invalid login")
+                }
+            }
+    }
+    
     func logOut() {
-        if kataApp.logOut() {
+        if accessUseCase.logOut() {
             view?.showLogInForm()
             view?.hideLogOutForm()
         }else{

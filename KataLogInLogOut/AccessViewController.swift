@@ -25,7 +25,7 @@ class AccessViewController: UIViewController {
     @IBAction func login(_ sender: UIButton) {
         let username = usernameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        presenter.logIn(username: username, password: password)
+        presenter.login(username: username, password: password)
     }
     
     @IBAction func logout(_ sender: UIButton) {

@@ -7,13 +7,7 @@
 //
 
 import Foundation
-//import BrightFutures
-
-enum LoginResult:Equatable {
-    case success
-    case invalidChars
-    case invalid
-}
+import BrightFutures
 
 class AccessUseCase {
     
@@ -33,6 +27,20 @@ class AccessUseCase {
         return LoginResult.invalid
     }
     
+    func login(username:String, password:String) -> Future<String, LoginError> {
+        return Future { complete in
+            DispatchQueue.global().async {
+                if self.checkInValidUsername(input: username){
+                    complete(.failure(LoginError.invalidChars))
+                }
+                if username.isEqual("admin") && password.isEqual("admin") {
+                    complete(.success("admin"))
+                }
+                complete(.failure(LoginError.invalid))
+            }
+        }
+    }
+    
     func logOut() -> Bool {
         let date = clock.now
         return Int(date.timeIntervalSince1970) % 2 == 0
@@ -41,4 +49,14 @@ class AccessUseCase {
     private func checkInValidUsername(input:String) -> Bool {
         return input.contains(",") || input.contains(".") || input.contains(";")
     }
+}
+
+enum LoginResult:Equatable {
+    case success
+    case invalidChars
+    case invalid
+}
+
+enum LoginError: Error {
+    case invalid, invalidChars
 }
