@@ -20,40 +20,10 @@ class AccessUseCaseTests: XCTestCase {
     }
     
     // MARK: login
-    
-    func test_given_invalid_username_password_when_login_then_not_logged() {
-        givenNow()
-        let result = sut.logIn(username: "", password: "admin")
-        XCTAssertEqual(result, .invalid)
-    }
-    
-    func test_given_valid_username_invalid_pass_when_login_then_not_logged() {
-        givenNow()
-        XCTAssertEqual(.invalid, sut.logIn(username: "admin", password: ""))
-    }
-    
-    func test_given_invalid_username_valid_pass_when_login_then_not_logged() {
-        givenNow()
-        XCTAssertEqual(.invalid, sut.logIn(username: "", password: "admin"))
-    }
-    
-    func test_given_valid_args_when_login_then_logged() {
-        givenNow()
-        XCTAssertEqual(.success, sut.logIn(username: "admin", password: "admin"))
-    }
-    
-    func test_given_invalid_char_username_when_login_then_not_logged() {
-        givenNow()
-        let failureChars = [",", ".", ";"]
-        for item in failureChars {
-            XCTAssertEqual(.invalidChars, sut.logIn(username: item, password: "admin"))
-        }
-    }
-    
-    //async
+
     func test_given_invalid_username_password_when_login_async_then_not_logged() {
         givenNow()
-        let result = sut.login(username: "", password: "admin")
+        let result = sut.login(username: "", password: "")
         expect(result.error).toEventually(equal(.invalid))
     }
     

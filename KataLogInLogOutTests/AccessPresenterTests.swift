@@ -37,31 +37,6 @@ class AccessPresenterTests: XCTestCase {
     
     // MARK: Login
     
-    func test_given_valid_login_logic_when_login_then_logged() {
-        givenLogInResult(result: LoginResult.success)
-        sut.logIn(username: USERNAME, password: PASSWORD)
-        XCTAssertTrue(mockView.hidedLogInForm)
-        XCTAssertTrue(mockView.showedLogOutForm)
-        XCTAssertNil(mockView.showedLoginForm)
-        XCTAssertNil(mockView.hidedLogOutForm)
-        XCTAssertNil(mockView.showedError)
-    }
-    
-    func test_given_invalid_login_when_login_then_not_logged() {
-        givenLogInResult(result: LoginResult.invalid)
-        sut.logIn(username: USERNAME, password: PASSWORD)
-        assertNotTouchedViewForm() //maybe over specificated
-        XCTAssertEqual(mockView.showedError, "invalid login")
-    }
-    
-    func test_given_invalid_chars_login_when_login_then_not_logged() {
-        givenLogInResult(result: LoginResult.invalidChars)
-        sut.logIn(username: USERNAME, password: PASSWORD)
-        assertNotTouchedViewForm() //maybe over specificated
-        XCTAssertEqual(mockView.showedError, "invalid chars in login")
-    }
-    
-    //async
     func test_given_valid_login_logic_when_login_async_then_logged() {
         givenLoginResult(result: Result(value: USERNAME))
         sut.login(username: USERNAME, password: PASSWORD)
@@ -106,10 +81,6 @@ class AccessPresenterTests: XCTestCase {
     }
     
     // MARK: private
-    
-    func givenLogInResult(result:LoginResult)  {
-        mockKata.loginResult = result
-    }
 
     func givenLoginResult(result: Result<String, LoginError>) {
         mockKata.result = result
@@ -130,15 +101,10 @@ class AccessPresenterTests: XCTestCase {
 private class MockAccessUseCase: AccessUseCase {
     
     var result:Result<String, LoginError>!
-    var loginResult:LoginResult!
     var logoutResult:Bool!
     
     init() {
         super.init(clock: Clock())
-    }
-    
-    override func logIn(username: String, password: String) -> LoginResult {
-        return loginResult
     }
     
     override func login(username: String, password: String) -> Future<String, LoginError> {

@@ -17,16 +17,6 @@ class AccessUseCase {
         self.clock = clock
     }
     
-    func logIn(username:String, password:String) -> LoginResult {
-        if checkInValidUsername(input: username){
-            return LoginResult.invalidChars
-        }
-        if username.isEqual("admin") && password.isEqual("admin") {
-            return LoginResult.success
-        }
-        return LoginResult.invalid
-    }
-    
     func login(username:String, password:String) -> Future<String, LoginError> {
         return Future { complete in
             DispatchQueue.global().async {
@@ -49,12 +39,6 @@ class AccessUseCase {
     private func checkInValidUsername(input:String) -> Bool {
         return input.contains(",") || input.contains(".") || input.contains(";")
     }
-}
-
-enum LoginResult:Equatable {
-    case success
-    case invalidChars
-    case invalid
 }
 
 enum LoginError: Error {

@@ -25,19 +25,6 @@ class AccessPresenter {
         self.accessUseCase = accessUseCase
     }
     
-    func logIn(username:String, password:String) {
-        let loggedIn = accessUseCase.logIn(username: username, password: password)
-        switch loggedIn {
-        case .success:
-            view?.hideLogInForm()
-            view?.showLogOutForm()
-        case .invalidChars:
-            view?.showError(error: "invalid chars in login")
-        case .invalid:
-            view?.showError(error: "invalid login")
-        }
-    }
-    
     func login(username:String, password:String) {
         accessUseCase.login(username: username, password: password)
             .onSuccess { _ in
