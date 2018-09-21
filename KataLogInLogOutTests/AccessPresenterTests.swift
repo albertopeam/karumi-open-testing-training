@@ -35,7 +35,7 @@ class AccessPresenterTests: XCTestCase {
         mockKata = nil
     }
     
-    // Mark: Login
+    // MARK: Login
     
     func test_given_valid_login_logic_when_login_then_logged() {
         givenLogInResult(result: LoginResult.success)
@@ -86,7 +86,7 @@ class AccessPresenterTests: XCTestCase {
         expect(self.mockView.showedError).to(equal("invalid chars in login"))
     }
     
-    // Mark: Logout
+    // MARK: Logout
     
     func test_given_valid_logout_when_logout_then_logged_out() {
         givenLogoutResult(result: true)
@@ -105,7 +105,7 @@ class AccessPresenterTests: XCTestCase {
         XCTAssertEqual(mockView.showedError, "failed")
     }
     
-    // Mark: private
+    // MARK: private
     
     func givenLogInResult(result:LoginResult)  {
         mockKata.loginResult = result

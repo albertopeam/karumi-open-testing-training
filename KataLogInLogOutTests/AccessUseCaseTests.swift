@@ -19,6 +19,8 @@ class AccessUseCaseTests: XCTestCase {
         sut = nil
     }
     
+    // MARK: login
+    
     func test_given_invalid_username_password_when_login_then_not_logged() {
         givenNow()
         let result = sut.logIn(username: "", password: "admin")
@@ -40,6 +42,52 @@ class AccessUseCaseTests: XCTestCase {
         XCTAssertEqual(.success, sut.logIn(username: "admin", password: "admin"))
     }
     
+    func test_given_invalid_char_username_when_login_then_not_logged() {
+        givenNow()
+        let failureChars = [",", ".", ";"]
+        for item in failureChars {
+            XCTAssertEqual(.invalidChars, sut.logIn(username: item, password: "admin"))
+        }
+    }
+    
+    //async
+    func test_given_invalid_username_password_when_login_async_then_not_logged() {
+        givenNow()
+        let result = sut.login(username: "", password: "admin")
+        expect(result.error).toEventually(equal(.invalid))
+    }
+    
+    func test_given_valid_username_invalid_pass_when_login_async_then_not_logged() {
+        givenNow()
+        let result = sut.login(username: "admin", password: "")
+        expect(result.error).toEventually(equal(.invalid))
+    }
+    
+    func test_given_invalid_username_valid_pass_when_login_async_then_not_logged() {
+        givenNow()
+        let result = sut.login(username: "", password: "admin")
+        expect(result.error).toEventually(equal(.invalid))
+    }
+    
+    func test_given_valid_args_when_login_async_then_logged() {
+        givenNow()
+        let uname = "admin"
+        let result = sut.login(username: uname, password: "admin")
+        expect(result.value).toEventually(equal(uname))
+    }
+    
+    func test_given_invalid_char_username_when_login_async_then_not_logged() {
+        givenNow()
+        let failureChars = [",", ".", ";"]
+        for item in failureChars {
+            let result = sut.login(username: item, password: "admin")
+            expect(result.error).toEventually(equal(.invalidChars))
+        }
+    }
+    
+    
+    // MARK: logout
+    
     func test_given_valid_time_when_logout_then_logout(){
         let mockClock = MockClock(date: Date.init(timeIntervalSince1970: 2))
         givenNowIs(clock: mockClock)
@@ -52,15 +100,7 @@ class AccessUseCaseTests: XCTestCase {
         XCTAssertEqual(false, sut.logOut())
     }
     
-    func test_given_invalid_char_username_when_login_then_not_logged() {
-        givenNow()
-        let failureChars = [",", ".", ";"]
-        for item in failureChars {
-            XCTAssertEqual(.invalidChars, sut.logIn(username: item, password: "admin"))
-        }
-    }
-    
-    // Mark : private
+    // MARK : private
     func givenNowIs(clock:Clock) {
         sut = AccessUseCase(clock: clock)
     }
